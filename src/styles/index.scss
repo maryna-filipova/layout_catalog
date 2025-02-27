@@ -3,16 +3,27 @@ $main-color: #fff;
 $text-main-color: #060b35;
 $text-secondary-color: #616070;
 $font-family: 'Roboto', sans-serif;
+$duration: 300ms;
+
+html {
+  overflow-x: hidden;
+}
 
 body {
   margin: 0;
   padding: 0;
   font-family: Roboto, sans-serif;
+  overflow-x: hidden;
 }
 
-.catalog {
-  padding: 50px 40px;
+p {
+  margin: 0;
 }
+
+/* .container {
+  justify-content: center;
+  align-items: center;
+} */
 
 /* #region header */
 header {
@@ -22,8 +33,13 @@ header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+
+  margin-left: 0;
   padding: 0 20px;
   padding-left: 40px;
+  box-shadow: 0 2px 4px #0000000d;
+
+  position: relative;
 }
 
 .logo {
@@ -34,6 +50,7 @@ header {
 
 nav {
   margin-left: auto;
+
   right: 40px;
   margin-right: 50px;
   position: relative;
@@ -43,6 +60,7 @@ nav ul {
   list-style: none;
   display: flex;
   line-height: 15px;
+  padding: 0;
 }
 
 nav ul li {
@@ -90,6 +108,42 @@ nav ul li a:hover {
 /* #endregion */
 
 /* #region card */
+.catalog {
+  padding: 50px 40px;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 200px);
+
+    gap: 46px;
+    column-gap: 48px;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 300px) {
+  .catalog__grid {
+    grid-template-columns: repeat(1, 200px);
+  }
+}
+
+@media (min-width: 488px) {
+  .catalog__grid {
+    grid-template-columns: repeat(2, 200px);
+  }
+}
+
+@media (min-width: 768px) {
+  .catalog__grid {
+    grid-template-columns: repeat(3, 200px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .catalog__grid {
+    grid-template-columns: repeat(4, 200px);
+  }
+}
 
 .card {
   width: 200px;
@@ -101,7 +155,11 @@ nav ul li a:hover {
   background: $main-color;
   justify-content: center;
   align-items: center;
-  gap: 48px 46px;
+
+  :hover {
+    transform: scale(1.2);
+    transition-duration: $duration;
+  }
 
   &__image {
     margin: 0 auto 40px;
@@ -116,36 +174,43 @@ nav ul li a:hover {
     font-weight: 500;
     color: $text-main-color;
     display: flex;
+
     margin-bottom: 4px;
   }
 
   &__code {
     font-size: 10px;
+
     line-height: 14px;
     font-weight: 400;
     color: $text-secondary-color;
+
     margin-bottom: 16px;
   }
 
   &__price {
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
     gap: 60px;
 
     &-label {
       font-size: 12px;
+
       line-height: 18px;
       color: $text-secondary-color;
+
       margin-bottom: 16px;
     }
 
     &-value {
       font-size: 16px;
+
       line-height: 18px;
       color: $text-main-color;
       font-weight: 700;
+
       margin-bottom: 16px;
       text-align: right;
     }
@@ -163,24 +228,33 @@ nav ul li a:hover {
     border-radius: 5px;
     text-align: center;
 
-    &[data-qa='hover']:hover {
+    &[data-qa='card-hover']:hover {
       border: 1px solid #00acdc;
       background: $main-color;
       color: #00acdc;
+      transition-duration: $duration;
     }
   }
+}
+
+.card:hover .card__title {
+  color: #34568b;
+  transition-duration: $duration;
 }
 
 .card__review {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   margin-bottom: 24px;
 
   &-text {
     font-size: 10px;
+
     line-height: 14px;
     color: $text-main-color;
+
     margin-top: 2px;
   }
 }
